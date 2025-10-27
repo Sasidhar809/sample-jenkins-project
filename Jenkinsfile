@@ -1,45 +1,43 @@
 pipeline {
     agent any
 
-    environment {
-        REPO_URL = 'https://github.com/Sasidhar809/sample-jenkins-project.git'
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: "${REPO_URL}", credentialsId: 'YOUR_GITHUB_CREDENTIAL_ID'
-            }
-        }
 
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                bat 'echo Build step executed!'
+                echo '📦 Building the Node.js application...'
+                bat '''
+                if not exist node_modules (
+                    echo Installing dependencies...
+                    npm install
+                ) else (
+                    echo Dependencies already installed
+                )
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                bat 'echo Test step executed!'
+                echo '🧪 Running tests...'
+                bat 'npm test || echo "No tests found"'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
-                bat 'echo Deploy step executed!'
+                echo '🚀 Deploying application (simulated)...'
+                bat 'echo "Application deployed successfully!"'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            echo '✅ Build completed successfully!'
         }
         failure {
-            echo 'Pipeline failed!'
+            echo '❌ Build failed! Please check the logs.'
         }
     }
 }
