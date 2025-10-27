@@ -8,16 +8,11 @@ pipeline {
     stages {
 
         stage('Build') {
-            steps {
-                echo '📦 Building the Node.js application...'
-                bat '''
-                if not exist node_modules (
-                    echo Installing dependencies...
-                    npm install
-                ) else (
-                    echo Dependencies already installed
-                )
-                '''
+    steps {
+        echo '📦 Skipping build step (no Node.js app yet)'
+    }
+}
+
             }
         }
 
