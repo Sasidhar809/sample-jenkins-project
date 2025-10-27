@@ -1,40 +1,45 @@
 pipeline {
     agent any
 
-    stages {
+    environment {
+        REPO_URL = 'https://github.com/Sasidhar809/sample-jenkins-project.git'
+    }
 
-        stage('Clone') {
+    stages {
+        stage('Checkout') {
             steps {
-                echo '📦 Cloning repository...'
-                checkout scm
+                git branch: 'main', url: "${REPO_URL}", credentialsId: 'YOUR_GITHUB_CREDENTIAL_ID'
             }
         }
 
         stage('Build') {
             steps {
-                echo '🏗️ Building the project...'
-                bat 'echo Simulating build step...'
+                echo 'Building the application...'
+                bat 'echo Build step executed!'
             }
         }
 
         stage('Test') {
             steps {
-                echo '🧪 Running tests...'
-                bat 'echo All tests passed successfully!'
+                echo 'Running tests...'
+                bat 'echo Test step executed!'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo '🚀 Deploying application...'
-                bat 'echo Application deployed to staging environment!'
+                echo 'Deploying application...'
+                bat 'echo Deploy step executed!'
             }
         }
+    }
 
-        stage('Finish') {
-            steps {
-                echo '✅ Pipeline completed successfully!'
-            }
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
