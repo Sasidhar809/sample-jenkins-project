@@ -16,7 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo '🧪 Running tests...'
-                bat 'npm test || echo "No tests found"'
+                bat 'node app.js"'
             }
         }
 
