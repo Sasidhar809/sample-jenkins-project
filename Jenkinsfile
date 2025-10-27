@@ -3,16 +3,13 @@ pipeline {
 
     tools {
         nodejs 'NodeJs-18'
-    }    
+    }
 
     stages {
 
         stage('Build') {
-    steps {
-        echo '📦 Skipping build step (no Node.js app yet)'
-    }
-}
-
+            steps {
+                echo '📦 Skipping build step (no Node.js app yet)'
             }
         }
 
