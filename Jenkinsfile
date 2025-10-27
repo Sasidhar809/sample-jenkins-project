@@ -12,13 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build stage...'
-                bat 'bash hello.sh'
+                bat 'echo Hello from Jenkins running on Windows!'
             }
         }
 
         stage('Finish') {
             steps {
-                echo 'Build completed successfully!'
+                echo '✅ Pipeline finished successfully!'
             }
         }
     }
