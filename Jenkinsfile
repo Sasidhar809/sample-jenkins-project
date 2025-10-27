@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build stage...'
-                sh 'bash hello.sh'
+                bat 'bash hello.sh'
             }
         }
 
